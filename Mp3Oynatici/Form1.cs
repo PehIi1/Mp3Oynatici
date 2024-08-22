@@ -2,6 +2,7 @@
 using FFMpegCore.Arguments;
 using FFMpegCore.Helpers;
 using Guna.UI2.WinForms;
+using Mp3Oynatici;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ namespace Mp3Player
 
         OpenFileDialog ofd = new OpenFileDialog();
         SaveFileDialog sfd = new SaveFileDialog();
+        decibelForm decibelForm = new decibelForm();
 
         /****************************************** Başlıca İşlemler ******************************************/
         public Form1()
@@ -336,29 +338,30 @@ namespace Mp3Player
                 MessageBox.Show("Lütfen bir ses dosyası oynatınız!", "Dosya bulunamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void audioToolStrip_Click(object sender, EventArgs e)
+        private async void audioToolStrip_Click(object sender, EventArgs e)
         {
             if (audioData != null)
             {
-                //if (desibelForm.ShowDialog() == DialogResult.OK)
-                //{
-                //    double newVolume = desibelForm.volume;
+                if (decibelForm.ShowDialog() == DialogResult.OK)
+                {
+                    double newVolume = decibelForm.newDecibel;
 
-                //    string input = ofd.FileName;
-                //    string directory = Path.GetDirectoryName(input);
-                //    string fileName = Path.GetFileNameWithoutExtension(input);
-                //    string extension = Path.GetExtension(input);
+                    string input = ofd.FileName;
+                    string directory = Path.GetDirectoryName(input);
+                    string fileName = Path.GetFileNameWithoutExtension(input);
+                    string extension = Path.GetExtension(input);
 
-                //    sfd.Filter = ofd.Filter;
-                //    sfd.DefaultExt = ofd.Filter;
-                //    sfd.FileName = Path.Combine(directory, $"Changed_{fileName}{extension}");
-                //    if (sfd.ShowDialog() == DialogResult.OK)
-                //    {
-                //        string output = sfd.FileName;
-                //        await AdjustVolumeAsync(input, output, newVolume);
-
-                //    }
-                //}
+                    sfd.Filter = ofd.Filter;
+                    sfd.DefaultExt = ofd.Filter;
+                    sfd.FileName = Path.Combine(directory, $"Changed_{fileName}{extension}");
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        string output = sfd.FileName;
+                        await AdjustVolumeAsync(input, output, newVolume);
+                    }
+                }
+                else
+                    MessageBox.Show("The operation failed!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
                 MessageBox.Show("Lütfen bir ses dosyası seçiniz!", "Dosya bulunamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -543,5 +546,6 @@ namespace Mp3Player
         {
             Volume.Width = this.Width / 5;
         }
+
     }
 }
