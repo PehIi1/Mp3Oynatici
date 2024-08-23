@@ -3,6 +3,7 @@ using FFMpegCore.Arguments;
 using FFMpegCore.Helpers;
 using Guna.UI2.WinForms;
 using Mp3Oynatici;
+using NAudio.Utils;
 using NAudio.Wave;
 using System;
 using System.Collections.Generic;
@@ -41,16 +42,23 @@ namespace Mp3Player
         private Image imageLow;
         private Image imageHalf;
         private Image imageFull;
+        private Image imageMicrophone;
+        private Image imageMp3Player;
+
+        private string lastPath;
+        private float[] audioData;
+        private int voice;
+        private bool isMouseDown;
+        private bool isStopped = false;
+        private bool isPaused = false;
+        private bool isPlayer = true;
 
         private IWavePlayer waveOut;
         public WaveStream audioFile;
-        private float[] audioData;
+        private WaveInEvent waveIn;
+        private MemoryStream memoryStream;
+        private WaveFileWriter writer;
         private Timer timer;
-        private bool isStopped = false;
-        private int voice;
-
-        private bool isMouseDown;
-
         OpenFileDialog ofd = new OpenFileDialog();
         SaveFileDialog sfd = new SaveFileDialog();
         decibelForm decibelForm = new decibelForm();
@@ -70,9 +78,18 @@ namespace Mp3Player
         private void Form1_Load(object sender, EventArgs e) //form1 ilk yüklendiğinde olacak işlemler
         {
 
-            gecenSure.Text = "00:00:00";  // ses dosyasının anlık süre label'ına değer atanıyor
-            toplamSure.Text = "00:00:00"; // ses dosyasının toplam süre label'ına değer atanıyor
+            lblGecenSure.Text = "00:00:00";  // ses dosyasının anlık süre label'ına değer atanıyor
+            lblToplamSure.Text = "00:00:00"; // ses dosyasının toplam süre label'ına değer atanıyor
             Volume.Value = 50; // ses trackbar'ının başlangıç değeri yarıya çekiliyor
+            btnMicrophone.Image = imageMicrophone;
+            btnMicPlay.Image = imagePlay;
+
+            btnMicPlay.Visible = false;
+            btnMicStop.Visible = false;
+            btnBluetooth.Visible = false;
+            lblBluetooth.Visible = false;
+
+            lastPath = Directory.GetParent(Directory.GetParent(Application.StartupPath).FullName).FullName + "\\Kaydedilenler\\";
 
             timer.Stop();
             timer.Start();
@@ -81,7 +98,7 @@ namespace Mp3Player
         {
             if (audioFile != null && audioFile.CurrentTime.TotalMilliseconds <= audioFile.TotalTime.TotalMilliseconds) // import edilen dosya varsa ve anlık zaman toplam zamandan küçük veya eşitse
             {
-                gecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss");  // anlık süre label'ının değeri ses dosyasının anlık süresi olarak atanıyor
+                lblGecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss");  // anlık süre label'ının değeri ses dosyasının anlık süresi olarak atanıyor
             }
             btnVolume.Invalidate(); // ses buton'u güncelleniyor (ses düzeyine göre ikon değişikliği için)
             graphic.Invalidate(); // grafik panel'i güncelleniyor
@@ -95,6 +112,8 @@ namespace Mp3Player
             imageHalf = Mp3Oynatici.Properties.Resources.icons8_voice_25;
             imageLow = Mp3Oynatici.Properties.Resources.icons8_low_volume_25;
             imageMute = Mp3Oynatici.Properties.Resources.icons8_sound_speaker_25;
+            imageMicrophone = Mp3Oynatici.Properties.Resources.icons8_microphone_30;
+            imageMp3Player = Mp3Oynatici.Properties.Resources.icons8_sound_30;
         }
         /****************************************** Butonlar ******************************************/
         private async void btnOpen_Click(object sender, EventArgs e) // import butonuna tıklanma olayı
@@ -127,7 +146,7 @@ namespace Mp3Player
                 btnPlay.Image = imagePlay;
 
 
-                toplamSure.Text = audioFile.TotalTime.ToString(@"hh\:mm\:ss"); // toplam süre label'ına dosyanın toplam süresini yazdırma
+                lblToplamSure.Text = audioFile.TotalTime.ToString(@"hh\:mm\:ss"); // toplam süre label'ına dosyanın toplam süresini yazdırma
 
                 waveOut.PlaybackStopped += OnPlayBackStopped; // OnPlayBackStopped metodunu dosyanın bitmesiyle ilişkilendirme
                 await Task.Run(() => loadAudioData()); // ses dosyasını işleyecek olan metodu arkaplanla çalıştırma
@@ -141,9 +160,9 @@ namespace Mp3Player
                     if (sonNokta > 0)
                         uzanti = ofd.FileName.Substring(sonNokta);
                     if (fileName.Length > 15)
-                        FileName.Text = fileName.Substring(0, 15) + ".." + uzanti;
+                        lblFileName.Text = fileName.Substring(0, 15) + ".." + uzanti;
                     else
-                        FileName.Text = fileName + uzanti;
+                        lblFileName.Text = fileName + uzanti;
                 }
             }
         }
@@ -172,7 +191,7 @@ namespace Mp3Player
 
                 audioFile.CurrentTime = newTime;
 
-                gecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss"); 
+                lblGecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss"); 
                 if (isStopped)
                 {
                     waveOut?.Play();
@@ -190,7 +209,7 @@ namespace Mp3Player
                 if (audioFile.CurrentTime.TotalMilliseconds > audioFile.TotalTime.TotalMilliseconds)
                     audioFile.CurrentTime = audioFile.TotalTime;
 
-                gecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss");
+                lblGecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss");
                 if (isStopped)
                 {
                     waveOut?.Play();
@@ -357,6 +376,55 @@ namespace Mp3Player
                     waveOut.Volume = Volume.Value / 100f;
             }
         }
+        private void btnMicrophone_Click(object sender, EventArgs e)
+        {
+            if (isPlayer && btnMicrophone.Image == imageMicrophone)
+            {
+                btnMicrophone.Image = imageMp3Player;
+                lblChangeMicrophone.Text = "Mp3Player";
+                goesMicrophone();
+            }
+            else if (!isPlayer && btnMicrophone.Image == imageMp3Player)
+            {
+                btnMicrophone.Image = imageMicrophone;
+                lblChangeMicrophone.Text = "Microphone";
+                goesPlayer();
+            }
+        }
+        private void btnBackground_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnMicPlay_Click(object sender, EventArgs e)
+        {
+            if (btnMicPlay.Image == imagePlay)
+            {
+                btnMicPlay.Image = imagePause;
+                StartRecording();
+            }
+            else if (btnMicPlay.Image == imagePause)
+            {
+                btnMicPlay.Image = imagePlay;
+                PauseRecording();
+            }
+        }
+        private void btnMicStop_Click(object sender, EventArgs e)
+        {
+            StopRecording();
+
+            sfd.Filter = "WAV files (*.wav)|*.wav";
+            string tempFile = "MicDosyasi.wav";
+            sfd.InitialDirectory = lastPath;
+            string uniqueFilename = GenerateUniqueFileName(Path.Combine(sfd.InitialDirectory, tempFile));
+            sfd.FileName = Path.GetFileName(uniqueFilename);
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                lastPath = Path.GetDirectoryName(sfd.FileName);
+                string outputPath = sfd.FileName;
+                SaveRecording(outputPath);
+            }
+        }
 
         /****************************************** TrackBarlar ******************************************/
         private void Volume_Scroll(object sender, ScrollEventArgs e) // ses trackbar'ını kaydırma olayı
@@ -504,7 +572,7 @@ namespace Mp3Player
         private void OnPlayBackStopped(object sender, StoppedEventArgs e) // oynatılan ses dosyasının bitme olayı
         { // oynatılan dosya bittiğinde oynatma butonu ikonunun değişmesi, anlık zaman label'ının toplam süre label'ıyla eşitlenmesi ve dosyanın durduğunu belirtecek bir değişken ataması yapılması işlemi
             btnPlay.Image = imagePlay;
-            gecenSure.Text = toplamSure.Text;
+            lblGecenSure.Text = lblToplamSure.Text;
             isStopped = true;
 
         }
@@ -531,10 +599,139 @@ namespace Mp3Player
                 .ProcessAsynchronously();
         }
 
-        private void Form1_Resize(object sender, EventArgs e) // From1'in boyutunun kullanıcı tarafından değiştirilme olayı
+
+        private void goesMicrophone()
         {
-            Volume.Width = this.Width / 5; // ses trackbarı'nın genişliği, bulunduğu formun genişliğinin 5'te 1'i olarak ayarlanması işlemi
+            isPlayer = false;
+            btnBackward.Visible = false;
+            btnRestart.Visible = false;
+            btnPlay.Visible = false;
+            btnForward.Visible = false;
+            btnVolume.Visible = false;
+            btnOpen.Visible = false;
+            btnExport.Visible = false;
+            btnBackground.Visible = false;
+            Volume.Visible = false;
+            lblGecenSure.Visible = false;
+            lblToplamSure.Visible = false;
+            lblImport.Visible = false;
+            lblExport.Visible = false;
+            lblBackground1.Visible = false;
+            lblBackground2.Visible = false;
+            lblFileName.Visible = false;
+
+            btnMicPlay.Visible = true;
+            btnMicStop.Visible = true;
+            btnBluetooth.Visible = true;
+            lblBluetooth.Visible = true;
+
+        }
+        private void goesPlayer()
+        {
+            isPlayer = true;
+            btnBackward.Visible = true;
+            btnRestart.Visible = true;
+            btnPlay.Visible = true;
+            btnForward.Visible = true;
+            btnVolume.Visible = true;
+            btnOpen.Visible = true;
+            btnExport.Visible = true;
+            btnBackground.Visible = true;
+            Volume.Visible = true;
+            lblGecenSure.Visible = true;
+            lblToplamSure.Visible = true;
+            lblImport.Visible = true;
+            lblExport.Visible = true;
+            lblBackground1.Visible = true;
+            lblBackground2.Visible = true;
+            lblFileName.Visible = true;
+
+            btnMicPlay.Visible = false;
+            btnMicStop.Visible = false;
+            btnBluetooth.Visible = false;
+            lblBluetooth.Visible = false;
+        }
+        public void StartRecording()
+        {
+            if (waveIn == null)
+            {
+                waveIn = new WaveInEvent();
+                waveIn.WaveFormat = new WaveFormat(44100, 1);
+                waveIn.DataAvailable += OnDataAvailable;
+                waveIn.RecordingStopped += OnRecordingStopped;
+                if (memoryStream == null)
+                {
+                    memoryStream = new MemoryStream();
+                }
+
+                if (writer == null)
+                {
+                    writer = new WaveFileWriter(new IgnoreDisposeStream(memoryStream), waveIn.WaveFormat);
+                }
+                waveIn.StartRecording();
+                isPaused = false;
+            }
+            else if (waveIn != null)
+                ResumeRecording();
+        }
+        private void OnDataAvailable(object sender, WaveInEventArgs e)
+        {
+            if (!isPaused && writer != null)
+            {
+                writer.Write(e.Buffer, 0, e.BytesRecorded);
+            }
+        }
+        private void OnRecordingStopped(object sender, StoppedEventArgs e)
+        {
+            writer?.Dispose();
+            writer = null;
+            waveIn?.Dispose();
+            waveIn = null;
         }
 
+        public void PauseRecording()
+        {
+            isPaused = true;
+        }
+
+        public void ResumeRecording()
+        {
+            isPaused = false;
+        }
+
+        public void StopRecording()
+        {
+            waveIn?.StopRecording();
+            writer?.Dispose();
+            writer = null;
+            waveIn?.Dispose();
+            waveIn = null;
+        }
+
+        public void SaveRecording(string outputPath)
+        {
+            File.WriteAllBytes(outputPath, memoryStream.ToArray());
+            memoryStream.Dispose();
+            memoryStream = null;
+        }
+
+        private string GenerateUniqueFileName(string filePath)
+        {
+            string directory = Path.GetDirectoryName(filePath);
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePath);
+            string extension = Path.GetExtension(filePath);
+
+            int counter = 1;
+            string newFilePath = filePath;
+
+            while (File.Exists(newFilePath))
+            {
+                string newFileName = $"{fileNameWithoutExtension} ({counter})";
+                newFilePath = Path.Combine(directory, newFileName + extension);
+                counter++;
+            }
+
+            return newFilePath;
+        }
     }
 }

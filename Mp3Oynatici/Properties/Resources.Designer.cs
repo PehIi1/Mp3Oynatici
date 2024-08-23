@@ -73,6 +73,16 @@ namespace Mp3Oynatici.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_bluetooth_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-bluetooth-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_convert_35 {
             get {
                 object obj = ResourceManager.GetObject("icons8-convert-35", resourceCulture);
@@ -96,6 +106,16 @@ namespace Mp3Oynatici.Properties {
         internal static System.Drawing.Bitmap icons8_low_volume_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-low-volume-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_microphone_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-microphone-30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +183,29 @@ namespace Mp3Oynatici.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_sound_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-sound-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_sound_speaker_25 {
             get {
                 object obj = ResourceManager.GetObject("icons8-sound-speaker-25", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap türünde yerelleştirilmiş bir kaynak arar.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_stop_25 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-stop-25", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

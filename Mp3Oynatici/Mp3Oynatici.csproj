@@ -209,5 +209,17 @@
   <ItemGroup>
     <None Include="Resources\icons8-voice-25.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-bluetooth-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-stop-25.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-microphone-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-sound-30.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

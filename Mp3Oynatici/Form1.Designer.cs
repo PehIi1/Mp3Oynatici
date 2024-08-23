@@ -28,25 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gecenSure = new System.Windows.Forms.Label();
-            this.toplamSure = new System.Windows.Forms.Label();
+            this.lblGecenSure = new System.Windows.Forms.Label();
+            this.lblToplamSure = new System.Windows.Forms.Label();
             this.graphic = new Guna.UI2.WinForms.Guna2Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnBackground = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnPlay2 = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnOpen = new System.Windows.Forms.Button();
+            this.lblBackground2 = new System.Windows.Forms.Label();
+            this.lblBackground1 = new System.Windows.Forms.Label();
+            this.lblExport = new System.Windows.Forms.Label();
+            this.lblImport = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.FileName = new System.Windows.Forms.Label();
-            this.btnForward = new System.Windows.Forms.Button();
-            this.btnPlay = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.btnVolume = new System.Windows.Forms.Button();
-            this.btnBackward = new System.Windows.Forms.Button();
-            this.btnRestart = new System.Windows.Forms.Button();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.Volume = new Guna.UI2.WinForms.Guna2TrackBar();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.formatToolStrip = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,29 +49,43 @@
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
+            this.lblBluetooth = new System.Windows.Forms.Label();
+            this.lblChangeMicrophone = new System.Windows.Forms.Label();
+            this.btnMicStop = new System.Windows.Forms.Button();
+            this.btnMicPlay = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnForward = new System.Windows.Forms.Button();
+            this.btnPlay = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnVolume = new System.Windows.Forms.Button();
+            this.btnBackward = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
+            this.btnMicrophone = new System.Windows.Forms.Button();
+            this.btnBluetooth = new System.Windows.Forms.Button();
+            this.btnBackground = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnOpen = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2ContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gecenSure
+            // lblGecenSure
             // 
-            this.gecenSure.AutoSize = true;
-            this.gecenSure.Location = new System.Drawing.Point(3, 3);
-            this.gecenSure.Name = "gecenSure";
-            this.gecenSure.Size = new System.Drawing.Size(49, 13);
-            this.gecenSure.TabIndex = 8;
-            this.gecenSure.Text = "00:00:00";
+            this.lblGecenSure.AutoSize = true;
+            this.lblGecenSure.Location = new System.Drawing.Point(3, 3);
+            this.lblGecenSure.Name = "lblGecenSure";
+            this.lblGecenSure.Size = new System.Drawing.Size(49, 13);
+            this.lblGecenSure.TabIndex = 8;
+            this.lblGecenSure.Text = "00:00:00";
             // 
-            // toplamSure
+            // lblToplamSure
             // 
-            this.toplamSure.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.toplamSure.AutoSize = true;
-            this.toplamSure.Location = new System.Drawing.Point(899, 3);
-            this.toplamSure.Name = "toplamSure";
-            this.toplamSure.Size = new System.Drawing.Size(49, 13);
-            this.toplamSure.TabIndex = 9;
-            this.toplamSure.Text = "00:00:00";
+            this.lblToplamSure.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblToplamSure.AutoSize = true;
+            this.lblToplamSure.Location = new System.Drawing.Point(899, 3);
+            this.lblToplamSure.Name = "lblToplamSure";
+            this.lblToplamSure.Size = new System.Drawing.Size(49, 13);
+            this.lblToplamSure.TabIndex = 9;
+            this.lblToplamSure.Text = "00:00:00";
             // 
             // graphic
             // 
@@ -104,237 +109,93 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(250)))), ((int)(((byte)(244)))));
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblChangeMicrophone);
+            this.panel1.Controls.Add(this.btnMicrophone);
+            this.panel1.Controls.Add(this.lblBluetooth);
+            this.panel1.Controls.Add(this.lblBackground2);
+            this.panel1.Controls.Add(this.btnBluetooth);
+            this.panel1.Controls.Add(this.lblBackground1);
             this.panel1.Controls.Add(this.btnBackground);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.btnPlay2);
+            this.panel1.Controls.Add(this.lblExport);
             this.panel1.Controls.Add(this.btnExport);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblImport);
             this.panel1.Controls.Add(this.btnOpen);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(140, 423);
             this.panel1.TabIndex = 21;
             // 
-            // label3
+            // lblBackground2
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 316);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 13);
-            this.label3.TabIndex = 35;
-            this.label3.Text = "Background";
+            this.lblBackground2.AutoSize = true;
+            this.lblBackground2.Location = new System.Drawing.Point(36, 238);
+            this.lblBackground2.Name = "lblBackground2";
+            this.lblBackground2.Size = new System.Drawing.Size(65, 13);
+            this.lblBackground2.TabIndex = 35;
+            this.lblBackground2.Text = "Background";
             // 
-            // label2
+            // lblBackground1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 304);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "Remove";
+            this.lblBackground1.AutoSize = true;
+            this.lblBackground1.Location = new System.Drawing.Point(45, 225);
+            this.lblBackground1.Name = "lblBackground1";
+            this.lblBackground1.Size = new System.Drawing.Size(47, 13);
+            this.lblBackground1.TabIndex = 34;
+            this.lblBackground1.Text = "Remove";
             // 
-            // btnBackground
+            // lblExport
             // 
-            this.btnBackground.BackColor = System.Drawing.Color.Transparent;
-            this.btnBackground.FlatAppearance.BorderSize = 0;
-            this.btnBackground.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnBackground.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackground.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBackground.Image = global::Mp3Oynatici.Properties.Resources.icons8_remove_25;
-            this.btnBackground.Location = new System.Drawing.Point(23, 240);
-            this.btnBackground.Name = "btnBackground";
-            this.btnBackground.Size = new System.Drawing.Size(94, 63);
-            this.btnBackground.TabIndex = 33;
-            this.btnBackground.UseVisualStyleBackColor = false;
+            this.lblExport.AutoSize = true;
+            this.lblExport.Location = new System.Drawing.Point(52, 159);
+            this.lblExport.Name = "lblExport";
+            this.lblExport.Size = new System.Drawing.Size(37, 13);
+            this.lblExport.TabIndex = 32;
+            this.lblExport.Text = "Export";
             // 
-            // label4
+            // lblImport
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(52, 213);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 32;
-            this.label4.Text = "Export";
-            // 
-            // btnPlay2
-            // 
-            this.btnPlay2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnPlay2.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlay2.FlatAppearance.BorderSize = 0;
-            this.btnPlay2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
-            this.btnPlay2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnPlay2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPlay2.Location = new System.Drawing.Point(52, 27);
-            this.btnPlay2.Name = "btnPlay2";
-            this.btnPlay2.Size = new System.Drawing.Size(37, 0);
-            this.btnPlay2.TabIndex = 0;
-            this.btnPlay2.UseVisualStyleBackColor = false;
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.Transparent;
-            this.btnExport.FlatAppearance.BorderSize = 0;
-            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExport.Image = global::Mp3Oynatici.Properties.Resources.icons8_convert_35;
-            this.btnExport.Location = new System.Drawing.Point(23, 149);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(94, 63);
-            this.btnExport.TabIndex = 31;
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 131);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Import";
-            // 
-            // btnOpen
-            // 
-            this.btnOpen.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpen.FlatAppearance.BorderSize = 0;
-            this.btnOpen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnOpen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOpen.Image = global::Mp3Oynatici.Properties.Resources.icons8_opened_folder_35;
-            this.btnOpen.Location = new System.Drawing.Point(23, 65);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(94, 63);
-            this.btnOpen.TabIndex = 1;
-            this.btnOpen.UseVisualStyleBackColor = false;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            this.lblImport.AutoSize = true;
+            this.lblImport.Location = new System.Drawing.Point(52, 85);
+            this.lblImport.Name = "lblImport";
+            this.lblImport.Size = new System.Drawing.Size(36, 13);
+            this.lblImport.TabIndex = 26;
+            this.lblImport.Text = "Import";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.panel2.Controls.Add(this.FileName);
+            this.panel2.Controls.Add(this.lblFileName);
+            this.panel2.Controls.Add(this.btnMicStop);
+            this.panel2.Controls.Add(this.btnMicPlay);
             this.panel2.Controls.Add(this.btnForward);
             this.panel2.Controls.Add(this.btnPlay);
             this.panel2.Controls.Add(this.btnVolume);
             this.panel2.Controls.Add(this.btnBackward);
             this.panel2.Controls.Add(this.btnRestart);
             this.panel2.Controls.Add(this.Volume);
-            this.panel2.Controls.Add(this.gecenSure);
-            this.panel2.Controls.Add(this.toplamSure);
+            this.panel2.Controls.Add(this.lblGecenSure);
+            this.panel2.Controls.Add(this.lblToplamSure);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 521);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(950, 69);
             this.panel2.TabIndex = 22;
             // 
-            // FileName
+            // lblFileName
             // 
-            this.FileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.FileName.AutoSize = true;
-            this.FileName.Font = new System.Drawing.Font("Microsoft JhengHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FileName.Location = new System.Drawing.Point(59, 21);
-            this.FileName.Name = "FileName";
-            this.FileName.Size = new System.Drawing.Size(0, 24);
-            this.FileName.TabIndex = 25;
-            // 
-            // btnForward
-            // 
-            this.btnForward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnForward.BackColor = System.Drawing.Color.Transparent;
-            this.btnForward.FlatAppearance.BorderSize = 0;
-            this.btnForward.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
-            this.btnForward.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnForward.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnForward.Image = global::Mp3Oynatici.Properties.Resources.icons8_fast_forward_25;
-            this.btnForward.Location = new System.Drawing.Point(498, 15);
-            this.btnForward.Name = "btnForward";
-            this.btnForward.Size = new System.Drawing.Size(37, 32);
-            this.btnForward.TabIndex = 14;
-            this.btnForward.UseVisualStyleBackColor = false;
-            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
-            // 
-            // btnPlay
-            // 
-            this.btnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnPlay.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnPlay.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnPlay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnPlay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnPlay.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnPlay.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnPlay.ForeColor = System.Drawing.Color.White;
-            this.btnPlay.Image = global::Mp3Oynatici.Properties.Resources.icons8_play_25;
-            this.btnPlay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnPlay.Location = new System.Drawing.Point(429, 11);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            this.btnPlay.Size = new System.Drawing.Size(41, 41);
-            this.btnPlay.TabIndex = 26;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
-            // btnVolume
-            // 
-            this.btnVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnVolume.BackColor = System.Drawing.Color.Transparent;
-            this.btnVolume.FlatAppearance.BorderSize = 0;
-            this.btnVolume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
-            this.btnVolume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnVolume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVolume.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnVolume.Image = global::Mp3Oynatici.Properties.Resources.icons8_voice_25;
-            this.btnVolume.Location = new System.Drawing.Point(691, 15);
-            this.btnVolume.Name = "btnVolume";
-            this.btnVolume.Size = new System.Drawing.Size(37, 32);
-            this.btnVolume.TabIndex = 24;
-            this.btnVolume.UseVisualStyleBackColor = false;
-            this.btnVolume.Click += new System.EventHandler(this.btnVolume_Click);
-            this.btnVolume.Paint += new System.Windows.Forms.PaintEventHandler(this.btnVolume_Paint);
-            // 
-            // btnBackward
-            // 
-            this.btnBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnBackward.BackColor = System.Drawing.Color.Transparent;
-            this.btnBackward.FlatAppearance.BorderSize = 0;
-            this.btnBackward.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
-            this.btnBackward.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnBackward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackward.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBackward.Image = global::Mp3Oynatici.Properties.Resources.icons8_rewind_25;
-            this.btnBackward.Location = new System.Drawing.Point(298, 15);
-            this.btnBackward.Name = "btnBackward";
-            this.btnBackward.Size = new System.Drawing.Size(37, 32);
-            this.btnBackward.TabIndex = 15;
-            this.btnBackward.UseVisualStyleBackColor = false;
-            this.btnBackward.Click += new System.EventHandler(this.btnBackward_Click);
-            // 
-            // btnRestart
-            // 
-            this.btnRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnRestart.BackColor = System.Drawing.Color.Transparent;
-            this.btnRestart.FlatAppearance.BorderSize = 0;
-            this.btnRestart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
-            this.btnRestart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRestart.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRestart.Image = global::Mp3Oynatici.Properties.Resources.icons8_restart_25;
-            this.btnRestart.Location = new System.Drawing.Point(362, 15);
-            this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(37, 32);
-            this.btnRestart.TabIndex = 20;
-            this.btnRestart.UseVisualStyleBackColor = false;
-            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft JhengHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.Location = new System.Drawing.Point(59, 21);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(0, 24);
+            this.lblFileName.TabIndex = 25;
             // 
             // Volume
             // 
-            this.Volume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Volume.Location = new System.Drawing.Point(731, 15);
             this.Volume.Name = "Volume";
             this.Volume.Size = new System.Drawing.Size(195, 33);
@@ -439,6 +300,228 @@
             this.guna2ControlBox3.Size = new System.Drawing.Size(39, 29);
             this.guna2ControlBox3.TabIndex = 25;
             // 
+            // lblBluetooth
+            // 
+            this.lblBluetooth.AutoSize = true;
+            this.lblBluetooth.Location = new System.Drawing.Point(45, 85);
+            this.lblBluetooth.Name = "lblBluetooth";
+            this.lblBluetooth.Size = new System.Drawing.Size(52, 13);
+            this.lblBluetooth.TabIndex = 37;
+            this.lblBluetooth.Text = "Bluetooth";
+            // 
+            // lblChangeMicrophone
+            // 
+            this.lblChangeMicrophone.AutoSize = true;
+            this.lblChangeMicrophone.Location = new System.Drawing.Point(38, 310);
+            this.lblChangeMicrophone.Name = "lblChangeMicrophone";
+            this.lblChangeMicrophone.Size = new System.Drawing.Size(63, 13);
+            this.lblChangeMicrophone.TabIndex = 39;
+            this.lblChangeMicrophone.Text = "Microphone";
+            // 
+            // btnMicStop
+            // 
+            this.btnMicStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnMicStop.BackColor = System.Drawing.Color.Transparent;
+            this.btnMicStop.FlatAppearance.BorderSize = 0;
+            this.btnMicStop.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
+            this.btnMicStop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnMicStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMicStop.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnMicStop.Image = global::Mp3Oynatici.Properties.Resources.icons8_stop_25;
+            this.btnMicStop.Location = new System.Drawing.Point(362, 15);
+            this.btnMicStop.Name = "btnMicStop";
+            this.btnMicStop.Size = new System.Drawing.Size(37, 32);
+            this.btnMicStop.TabIndex = 27;
+            this.btnMicStop.UseVisualStyleBackColor = false;
+            this.btnMicStop.Click += new System.EventHandler(this.btnMicStop_Click);
+            // 
+            // btnMicPlay
+            // 
+            this.btnMicPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnMicPlay.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnMicPlay.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnMicPlay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnMicPlay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnMicPlay.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnMicPlay.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnMicPlay.ForeColor = System.Drawing.Color.White;
+            this.btnMicPlay.Image = global::Mp3Oynatici.Properties.Resources.icons8_play_25;
+            this.btnMicPlay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnMicPlay.Location = new System.Drawing.Point(429, 11);
+            this.btnMicPlay.Name = "btnMicPlay";
+            this.btnMicPlay.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnMicPlay.Size = new System.Drawing.Size(41, 41);
+            this.btnMicPlay.TabIndex = 27;
+            this.btnMicPlay.Click += new System.EventHandler(this.btnMicPlay_Click);
+            // 
+            // btnForward
+            // 
+            this.btnForward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnForward.BackColor = System.Drawing.Color.Transparent;
+            this.btnForward.FlatAppearance.BorderSize = 0;
+            this.btnForward.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
+            this.btnForward.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnForward.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnForward.Image = global::Mp3Oynatici.Properties.Resources.icons8_fast_forward_25;
+            this.btnForward.Location = new System.Drawing.Point(498, 15);
+            this.btnForward.Name = "btnForward";
+            this.btnForward.Size = new System.Drawing.Size(37, 32);
+            this.btnForward.TabIndex = 14;
+            this.btnForward.UseVisualStyleBackColor = false;
+            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnPlay.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnPlay.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnPlay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnPlay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnPlay.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnPlay.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnPlay.ForeColor = System.Drawing.Color.White;
+            this.btnPlay.Image = global::Mp3Oynatici.Properties.Resources.icons8_play_25;
+            this.btnPlay.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnPlay.Location = new System.Drawing.Point(429, 11);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
+            this.btnPlay.Size = new System.Drawing.Size(41, 41);
+            this.btnPlay.TabIndex = 26;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // btnVolume
+            // 
+            this.btnVolume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVolume.BackColor = System.Drawing.Color.Transparent;
+            this.btnVolume.FlatAppearance.BorderSize = 0;
+            this.btnVolume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
+            this.btnVolume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnVolume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVolume.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnVolume.Image = global::Mp3Oynatici.Properties.Resources.icons8_voice_25;
+            this.btnVolume.Location = new System.Drawing.Point(691, 15);
+            this.btnVolume.Name = "btnVolume";
+            this.btnVolume.Size = new System.Drawing.Size(37, 32);
+            this.btnVolume.TabIndex = 24;
+            this.btnVolume.UseVisualStyleBackColor = false;
+            this.btnVolume.Click += new System.EventHandler(this.btnVolume_Click);
+            this.btnVolume.Paint += new System.Windows.Forms.PaintEventHandler(this.btnVolume_Paint);
+            // 
+            // btnBackward
+            // 
+            this.btnBackward.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnBackward.BackColor = System.Drawing.Color.Transparent;
+            this.btnBackward.FlatAppearance.BorderSize = 0;
+            this.btnBackward.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
+            this.btnBackward.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnBackward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackward.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBackward.Image = global::Mp3Oynatici.Properties.Resources.icons8_rewind_25;
+            this.btnBackward.Location = new System.Drawing.Point(298, 15);
+            this.btnBackward.Name = "btnBackward";
+            this.btnBackward.Size = new System.Drawing.Size(37, 32);
+            this.btnBackward.TabIndex = 15;
+            this.btnBackward.UseVisualStyleBackColor = false;
+            this.btnBackward.Click += new System.EventHandler(this.btnBackward_Click);
+            // 
+            // btnRestart
+            // 
+            this.btnRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnRestart.BackColor = System.Drawing.Color.Transparent;
+            this.btnRestart.FlatAppearance.BorderSize = 0;
+            this.btnRestart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SkyBlue;
+            this.btnRestart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRestart.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRestart.Image = global::Mp3Oynatici.Properties.Resources.icons8_restart_25;
+            this.btnRestart.Location = new System.Drawing.Point(362, 15);
+            this.btnRestart.Name = "btnRestart";
+            this.btnRestart.Size = new System.Drawing.Size(37, 32);
+            this.btnRestart.TabIndex = 20;
+            this.btnRestart.UseVisualStyleBackColor = false;
+            this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
+            // 
+            // btnMicrophone
+            // 
+            this.btnMicrophone.BackColor = System.Drawing.Color.Transparent;
+            this.btnMicrophone.FlatAppearance.BorderSize = 0;
+            this.btnMicrophone.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnMicrophone.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnMicrophone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMicrophone.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnMicrophone.Image = global::Mp3Oynatici.Properties.Resources.icons8_microphone_30;
+            this.btnMicrophone.Location = new System.Drawing.Point(44, 264);
+            this.btnMicrophone.Name = "btnMicrophone";
+            this.btnMicrophone.Size = new System.Drawing.Size(48, 43);
+            this.btnMicrophone.TabIndex = 38;
+            this.btnMicrophone.UseVisualStyleBackColor = false;
+            this.btnMicrophone.Click += new System.EventHandler(this.btnMicrophone_Click);
+            // 
+            // btnBluetooth
+            // 
+            this.btnBluetooth.BackColor = System.Drawing.Color.Transparent;
+            this.btnBluetooth.FlatAppearance.BorderSize = 0;
+            this.btnBluetooth.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnBluetooth.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnBluetooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBluetooth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBluetooth.Image = global::Mp3Oynatici.Properties.Resources.icons8_bluetooth_25;
+            this.btnBluetooth.Location = new System.Drawing.Point(46, 39);
+            this.btnBluetooth.Name = "btnBluetooth";
+            this.btnBluetooth.Size = new System.Drawing.Size(48, 43);
+            this.btnBluetooth.TabIndex = 36;
+            this.btnBluetooth.UseVisualStyleBackColor = false;
+            // 
+            // btnBackground
+            // 
+            this.btnBackground.BackColor = System.Drawing.Color.Transparent;
+            this.btnBackground.FlatAppearance.BorderSize = 0;
+            this.btnBackground.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnBackground.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackground.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBackground.Image = global::Mp3Oynatici.Properties.Resources.icons8_remove_25;
+            this.btnBackground.Location = new System.Drawing.Point(44, 185);
+            this.btnBackground.Name = "btnBackground";
+            this.btnBackground.Size = new System.Drawing.Size(48, 43);
+            this.btnBackground.TabIndex = 33;
+            this.btnBackground.UseVisualStyleBackColor = false;
+            this.btnBackground.Click += new System.EventHandler(this.btnBackground_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.Transparent;
+            this.btnExport.FlatAppearance.BorderSize = 0;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExport.Image = global::Mp3Oynatici.Properties.Resources.icons8_convert_35;
+            this.btnExport.Location = new System.Drawing.Point(46, 113);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(48, 43);
+            this.btnExport.TabIndex = 31;
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpen.FlatAppearance.BorderSize = 0;
+            this.btnOpen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnOpen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOpen.Image = global::Mp3Oynatici.Properties.Resources.icons8_opened_folder_35;
+            this.btnOpen.Location = new System.Drawing.Point(46, 39);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(48, 43);
+            this.btnOpen.TabIndex = 1;
+            this.btnOpen.UseVisualStyleBackColor = false;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,7 +540,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mp3 Player";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -468,11 +550,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnPlay2;
         private System.Windows.Forms.Button btnOpen;
-        private System.Windows.Forms.Label gecenSure;
-        private System.Windows.Forms.Label toplamSure;
+        private System.Windows.Forms.Label lblGecenSure;
+        private System.Windows.Forms.Label lblToplamSure;
         internal System.Windows.Forms.Button btnForward;
         internal System.Windows.Forms.Button btnBackward;
         private Guna.UI2.WinForms.Guna2Panel graphic;
@@ -481,9 +561,9 @@
         private System.Windows.Forms.Panel panel2;
         private Guna.UI2.WinForms.Guna2TrackBar Volume;
         internal System.Windows.Forms.Button btnVolume;
-        private System.Windows.Forms.Label FileName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblFileName;
+        private System.Windows.Forms.Label lblImport;
+        private System.Windows.Forms.Label lblExport;
         private System.Windows.Forms.Button btnExport;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem formatToolStrip;
@@ -497,8 +577,14 @@
         private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox3;
         private Guna.UI2.WinForms.Guna2CircleButton btnPlay;
         private System.Windows.Forms.Button btnBackground;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblBackground1;
+        private System.Windows.Forms.Label lblBackground2;
+        internal System.Windows.Forms.Button btnMicStop;
+        private Guna.UI2.WinForms.Guna2CircleButton btnMicPlay;
+        private System.Windows.Forms.Button btnBluetooth;
+        private System.Windows.Forms.Label lblBluetooth;
+        private System.Windows.Forms.Label lblChangeMicrophone;
+        private System.Windows.Forms.Button btnMicrophone;
     }
 }
 
