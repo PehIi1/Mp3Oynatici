@@ -32,12 +32,26 @@
             this.lblToplamSure = new System.Windows.Forms.Label();
             this.graphic = new Guna.UI2.WinForms.Guna2Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblChangeMicrophone = new System.Windows.Forms.Label();
+            this.btnMicrophone = new System.Windows.Forms.Button();
+            this.lblBluetooth = new System.Windows.Forms.Label();
             this.lblBackground2 = new System.Windows.Forms.Label();
+            this.btnBluetooth = new System.Windows.Forms.Button();
             this.lblBackground1 = new System.Windows.Forms.Label();
+            this.btnBackground = new System.Windows.Forms.Button();
             this.lblExport = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
             this.lblImport = new System.Windows.Forms.Label();
+            this.btnOpen = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblFileName = new System.Windows.Forms.Label();
+            this.btnMicStop = new System.Windows.Forms.Button();
+            this.btnMicPlay = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnForward = new System.Windows.Forms.Button();
+            this.btnPlay = new Guna.UI2.WinForms.Guna2CircleButton();
+            this.btnVolume = new System.Windows.Forms.Button();
+            this.btnBackward = new System.Windows.Forms.Button();
+            this.btnRestart = new System.Windows.Forms.Button();
             this.Volume = new Guna.UI2.WinForms.Guna2TrackBar();
             this.guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.formatToolStrip = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,23 +60,10 @@
             this.toAACToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toOGGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.audioToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
-            this.lblBluetooth = new System.Windows.Forms.Label();
-            this.lblChangeMicrophone = new System.Windows.Forms.Label();
-            this.btnMicStop = new System.Windows.Forms.Button();
-            this.btnMicPlay = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.btnForward = new System.Windows.Forms.Button();
-            this.btnPlay = new Guna.UI2.WinForms.Guna2CircleButton();
-            this.btnVolume = new System.Windows.Forms.Button();
-            this.btnBackward = new System.Windows.Forms.Button();
-            this.btnRestart = new System.Windows.Forms.Button();
-            this.btnMicrophone = new System.Windows.Forms.Button();
-            this.btnBluetooth = new System.Windows.Forms.Button();
-            this.btnBackground = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnOpen = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.guna2ContextMenuStrip1.SuspendLayout();
@@ -125,6 +126,40 @@
             this.panel1.Size = new System.Drawing.Size(140, 423);
             this.panel1.TabIndex = 21;
             // 
+            // lblChangeMicrophone
+            // 
+            this.lblChangeMicrophone.AutoSize = true;
+            this.lblChangeMicrophone.Location = new System.Drawing.Point(38, 310);
+            this.lblChangeMicrophone.Name = "lblChangeMicrophone";
+            this.lblChangeMicrophone.Size = new System.Drawing.Size(63, 13);
+            this.lblChangeMicrophone.TabIndex = 39;
+            this.lblChangeMicrophone.Text = "Microphone";
+            // 
+            // btnMicrophone
+            // 
+            this.btnMicrophone.BackColor = System.Drawing.Color.Transparent;
+            this.btnMicrophone.FlatAppearance.BorderSize = 0;
+            this.btnMicrophone.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnMicrophone.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnMicrophone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMicrophone.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnMicrophone.Image = global::Mp3Oynatici.Properties.Resources.icons8_microphone_30;
+            this.btnMicrophone.Location = new System.Drawing.Point(44, 264);
+            this.btnMicrophone.Name = "btnMicrophone";
+            this.btnMicrophone.Size = new System.Drawing.Size(48, 43);
+            this.btnMicrophone.TabIndex = 38;
+            this.btnMicrophone.UseVisualStyleBackColor = false;
+            this.btnMicrophone.Click += new System.EventHandler(this.btnMicrophone_Click);
+            // 
+            // lblBluetooth
+            // 
+            this.lblBluetooth.AutoSize = true;
+            this.lblBluetooth.Location = new System.Drawing.Point(45, 85);
+            this.lblBluetooth.Name = "lblBluetooth";
+            this.lblBluetooth.Size = new System.Drawing.Size(52, 13);
+            this.lblBluetooth.TabIndex = 37;
+            this.lblBluetooth.Text = "Bluetooth";
+            // 
             // lblBackground2
             // 
             this.lblBackground2.AutoSize = true;
@@ -133,6 +168,21 @@
             this.lblBackground2.Size = new System.Drawing.Size(65, 13);
             this.lblBackground2.TabIndex = 35;
             this.lblBackground2.Text = "Background";
+            // 
+            // btnBluetooth
+            // 
+            this.btnBluetooth.BackColor = System.Drawing.Color.Transparent;
+            this.btnBluetooth.FlatAppearance.BorderSize = 0;
+            this.btnBluetooth.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnBluetooth.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnBluetooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBluetooth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBluetooth.Image = global::Mp3Oynatici.Properties.Resources.icons8_bluetooth_25;
+            this.btnBluetooth.Location = new System.Drawing.Point(46, 39);
+            this.btnBluetooth.Name = "btnBluetooth";
+            this.btnBluetooth.Size = new System.Drawing.Size(48, 43);
+            this.btnBluetooth.TabIndex = 36;
+            this.btnBluetooth.UseVisualStyleBackColor = false;
             // 
             // lblBackground1
             // 
@@ -143,6 +193,22 @@
             this.lblBackground1.TabIndex = 34;
             this.lblBackground1.Text = "Remove";
             // 
+            // btnBackground
+            // 
+            this.btnBackground.BackColor = System.Drawing.Color.Transparent;
+            this.btnBackground.FlatAppearance.BorderSize = 0;
+            this.btnBackground.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnBackground.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackground.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBackground.Image = global::Mp3Oynatici.Properties.Resources.icons8_remove_25;
+            this.btnBackground.Location = new System.Drawing.Point(44, 185);
+            this.btnBackground.Name = "btnBackground";
+            this.btnBackground.Size = new System.Drawing.Size(48, 43);
+            this.btnBackground.TabIndex = 33;
+            this.btnBackground.UseVisualStyleBackColor = false;
+            this.btnBackground.Click += new System.EventHandler(this.btnBackground_Click);
+            // 
             // lblExport
             // 
             this.lblExport.AutoSize = true;
@@ -152,6 +218,22 @@
             this.lblExport.TabIndex = 32;
             this.lblExport.Text = "Export";
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.Transparent;
+            this.btnExport.FlatAppearance.BorderSize = 0;
+            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExport.Image = global::Mp3Oynatici.Properties.Resources.icons8_convert_35;
+            this.btnExport.Location = new System.Drawing.Point(46, 113);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(48, 43);
+            this.btnExport.TabIndex = 31;
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // lblImport
             // 
             this.lblImport.AutoSize = true;
@@ -160,6 +242,22 @@
             this.lblImport.Size = new System.Drawing.Size(36, 13);
             this.lblImport.TabIndex = 26;
             this.lblImport.Text = "Import";
+            // 
+            // btnOpen
+            // 
+            this.btnOpen.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpen.FlatAppearance.BorderSize = 0;
+            this.btnOpen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
+            this.btnOpen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
+            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOpen.Image = global::Mp3Oynatici.Properties.Resources.icons8_opened_folder_35;
+            this.btnOpen.Location = new System.Drawing.Point(46, 39);
+            this.btnOpen.Name = "btnOpen";
+            this.btnOpen.Size = new System.Drawing.Size(48, 43);
+            this.btnOpen.TabIndex = 1;
+            this.btnOpen.UseVisualStyleBackColor = false;
+            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
             // panel2
             // 
@@ -191,132 +289,6 @@
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(0, 24);
             this.lblFileName.TabIndex = 25;
-            // 
-            // Volume
-            // 
-            this.Volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Volume.Location = new System.Drawing.Point(731, 15);
-            this.Volume.Name = "Volume";
-            this.Volume.Size = new System.Drawing.Size(195, 33);
-            this.Volume.Style = Guna.UI2.WinForms.Enums.TrackBarStyle.Metro;
-            this.Volume.TabIndex = 23;
-            this.Volume.ThumbColor = System.Drawing.Color.DarkSlateGray;
-            this.Volume.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Volume_Scroll);
-            // 
-            // guna2ContextMenuStrip1
-            // 
-            this.guna2ContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formatToolStrip,
-            this.audioToolStrip});
-            this.guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
-            this.guna2ContextMenuStrip1.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.guna2ContextMenuStrip1.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
-            this.guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
-            this.guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.guna2ContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(174, 48);
-            // 
-            // formatToolStrip
-            // 
-            this.formatToolStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toMP3ToolStripMenuItem,
-            this.toWAVToolStripMenuItem,
-            this.toAACToolStripMenuItem,
-            this.toOGGToolStripMenuItem});
-            this.formatToolStrip.Name = "formatToolStrip";
-            this.formatToolStrip.Size = new System.Drawing.Size(173, 22);
-            this.formatToolStrip.Text = "Change file format";
-            // 
-            // toMP3ToolStripMenuItem
-            // 
-            this.toMP3ToolStripMenuItem.Name = "toMP3ToolStripMenuItem";
-            this.toMP3ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.toMP3ToolStripMenuItem.Text = "to MP3";
-            this.toMP3ToolStripMenuItem.Click += new System.EventHandler(this.toMp3_Click);
-            // 
-            // toWAVToolStripMenuItem
-            // 
-            this.toWAVToolStripMenuItem.Name = "toWAVToolStripMenuItem";
-            this.toWAVToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.toWAVToolStripMenuItem.Text = "to WAV";
-            this.toWAVToolStripMenuItem.Click += new System.EventHandler(this.toWav_Click);
-            // 
-            // toAACToolStripMenuItem
-            // 
-            this.toAACToolStripMenuItem.Name = "toAACToolStripMenuItem";
-            this.toAACToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.toAACToolStripMenuItem.Text = "to AAC";
-            this.toAACToolStripMenuItem.Click += new System.EventHandler(this.toAac_Click);
-            // 
-            // toOGGToolStripMenuItem
-            // 
-            this.toOGGToolStripMenuItem.Name = "toOGGToolStripMenuItem";
-            this.toOGGToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.toOGGToolStripMenuItem.Text = "to OGG";
-            this.toOGGToolStripMenuItem.Click += new System.EventHandler(this.toOgg_Click);
-            // 
-            // audioToolStrip
-            // 
-            this.audioToolStrip.Name = "audioToolStrip";
-            this.audioToolStrip.Size = new System.Drawing.Size(173, 22);
-            this.audioToolStrip.Text = "Change Decibels";
-            this.audioToolStrip.Click += new System.EventHandler(this.audioToolStrip_Click);
-            // 
-            // guna2ControlBox1
-            // 
-            this.guna2ControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2ControlBox1.FillColor = System.Drawing.Color.Red;
-            this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox1.Location = new System.Drawing.Point(911, 0);
-            this.guna2ControlBox1.Name = "guna2ControlBox1";
-            this.guna2ControlBox1.Size = new System.Drawing.Size(39, 29);
-            this.guna2ControlBox1.TabIndex = 23;
-            // 
-            // guna2ControlBox2
-            // 
-            this.guna2ControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2ControlBox2.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox;
-            this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
-            this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox2.Location = new System.Drawing.Point(872, 0);
-            this.guna2ControlBox2.Name = "guna2ControlBox2";
-            this.guna2ControlBox2.Size = new System.Drawing.Size(39, 29);
-            this.guna2ControlBox2.TabIndex = 24;
-            // 
-            // guna2ControlBox3
-            // 
-            this.guna2ControlBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
-            this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
-            this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
-            this.guna2ControlBox3.Location = new System.Drawing.Point(833, 0);
-            this.guna2ControlBox3.Name = "guna2ControlBox3";
-            this.guna2ControlBox3.Size = new System.Drawing.Size(39, 29);
-            this.guna2ControlBox3.TabIndex = 25;
-            // 
-            // lblBluetooth
-            // 
-            this.lblBluetooth.AutoSize = true;
-            this.lblBluetooth.Location = new System.Drawing.Point(45, 85);
-            this.lblBluetooth.Name = "lblBluetooth";
-            this.lblBluetooth.Size = new System.Drawing.Size(52, 13);
-            this.lblBluetooth.TabIndex = 37;
-            this.lblBluetooth.Text = "Bluetooth";
-            // 
-            // lblChangeMicrophone
-            // 
-            this.lblChangeMicrophone.AutoSize = true;
-            this.lblChangeMicrophone.Location = new System.Drawing.Point(38, 310);
-            this.lblChangeMicrophone.Name = "lblChangeMicrophone";
-            this.lblChangeMicrophone.Size = new System.Drawing.Size(63, 13);
-            this.lblChangeMicrophone.TabIndex = 39;
-            this.lblChangeMicrophone.Text = "Microphone";
             // 
             // btnMicStop
             // 
@@ -443,84 +415,121 @@
             this.btnRestart.UseVisualStyleBackColor = false;
             this.btnRestart.Click += new System.EventHandler(this.btnRestart_Click);
             // 
-            // btnMicrophone
+            // Volume
             // 
-            this.btnMicrophone.BackColor = System.Drawing.Color.Transparent;
-            this.btnMicrophone.FlatAppearance.BorderSize = 0;
-            this.btnMicrophone.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnMicrophone.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnMicrophone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMicrophone.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnMicrophone.Image = global::Mp3Oynatici.Properties.Resources.icons8_microphone_30;
-            this.btnMicrophone.Location = new System.Drawing.Point(44, 264);
-            this.btnMicrophone.Name = "btnMicrophone";
-            this.btnMicrophone.Size = new System.Drawing.Size(48, 43);
-            this.btnMicrophone.TabIndex = 38;
-            this.btnMicrophone.UseVisualStyleBackColor = false;
-            this.btnMicrophone.Click += new System.EventHandler(this.btnMicrophone_Click);
+            this.Volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Volume.Location = new System.Drawing.Point(731, 15);
+            this.Volume.Name = "Volume";
+            this.Volume.Size = new System.Drawing.Size(195, 33);
+            this.Volume.Style = Guna.UI2.WinForms.Enums.TrackBarStyle.Metro;
+            this.Volume.TabIndex = 23;
+            this.Volume.ThumbColor = System.Drawing.Color.DarkSlateGray;
+            this.Volume.Scroll += new System.Windows.Forms.ScrollEventHandler(this.Volume_Scroll);
             // 
-            // btnBluetooth
+            // guna2ContextMenuStrip1
             // 
-            this.btnBluetooth.BackColor = System.Drawing.Color.Transparent;
-            this.btnBluetooth.FlatAppearance.BorderSize = 0;
-            this.btnBluetooth.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnBluetooth.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnBluetooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBluetooth.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBluetooth.Image = global::Mp3Oynatici.Properties.Resources.icons8_bluetooth_25;
-            this.btnBluetooth.Location = new System.Drawing.Point(46, 39);
-            this.btnBluetooth.Name = "btnBluetooth";
-            this.btnBluetooth.Size = new System.Drawing.Size(48, 43);
-            this.btnBluetooth.TabIndex = 36;
-            this.btnBluetooth.UseVisualStyleBackColor = false;
+            this.guna2ContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.formatToolStrip,
+            this.audioToolStrip,
+            this.backgroundToolStrip});
+            this.guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
+            this.guna2ContextMenuStrip1.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.guna2ContextMenuStrip1.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
+            this.guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
+            this.guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
+            this.guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
+            this.guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.guna2ContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
+            this.guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.guna2ContextMenuStrip1.Size = new System.Drawing.Size(185, 70);
             // 
-            // btnBackground
+            // formatToolStrip
             // 
-            this.btnBackground.BackColor = System.Drawing.Color.Transparent;
-            this.btnBackground.FlatAppearance.BorderSize = 0;
-            this.btnBackground.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnBackground.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackground.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBackground.Image = global::Mp3Oynatici.Properties.Resources.icons8_remove_25;
-            this.btnBackground.Location = new System.Drawing.Point(44, 185);
-            this.btnBackground.Name = "btnBackground";
-            this.btnBackground.Size = new System.Drawing.Size(48, 43);
-            this.btnBackground.TabIndex = 33;
-            this.btnBackground.UseVisualStyleBackColor = false;
-            this.btnBackground.Click += new System.EventHandler(this.btnBackground_Click);
+            this.formatToolStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toMP3ToolStripMenuItem,
+            this.toWAVToolStripMenuItem,
+            this.toAACToolStripMenuItem,
+            this.toOGGToolStripMenuItem});
+            this.formatToolStrip.Name = "formatToolStrip";
+            this.formatToolStrip.Size = new System.Drawing.Size(184, 22);
+            this.formatToolStrip.Text = "Change file format";
             // 
-            // btnExport
+            // toMP3ToolStripMenuItem
             // 
-            this.btnExport.BackColor = System.Drawing.Color.Transparent;
-            this.btnExport.FlatAppearance.BorderSize = 0;
-            this.btnExport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnExport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExport.Image = global::Mp3Oynatici.Properties.Resources.icons8_convert_35;
-            this.btnExport.Location = new System.Drawing.Point(46, 113);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(48, 43);
-            this.btnExport.TabIndex = 31;
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            this.toMP3ToolStripMenuItem.Name = "toMP3ToolStripMenuItem";
+            this.toMP3ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.toMP3ToolStripMenuItem.Text = "to MP3";
+            this.toMP3ToolStripMenuItem.Click += new System.EventHandler(this.toMp3_Click);
             // 
-            // btnOpen
+            // toWAVToolStripMenuItem
             // 
-            this.btnOpen.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpen.FlatAppearance.BorderSize = 0;
-            this.btnOpen.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(244)))));
-            this.btnOpen.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(240)))), ((int)(((byte)(244)))));
-            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpen.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnOpen.Image = global::Mp3Oynatici.Properties.Resources.icons8_opened_folder_35;
-            this.btnOpen.Location = new System.Drawing.Point(46, 39);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(48, 43);
-            this.btnOpen.TabIndex = 1;
-            this.btnOpen.UseVisualStyleBackColor = false;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
+            this.toWAVToolStripMenuItem.Name = "toWAVToolStripMenuItem";
+            this.toWAVToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.toWAVToolStripMenuItem.Text = "to WAV";
+            this.toWAVToolStripMenuItem.Click += new System.EventHandler(this.toWav_Click);
+            // 
+            // toAACToolStripMenuItem
+            // 
+            this.toAACToolStripMenuItem.Name = "toAACToolStripMenuItem";
+            this.toAACToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.toAACToolStripMenuItem.Text = "to AAC";
+            this.toAACToolStripMenuItem.Click += new System.EventHandler(this.toAac_Click);
+            // 
+            // toOGGToolStripMenuItem
+            // 
+            this.toOGGToolStripMenuItem.Name = "toOGGToolStripMenuItem";
+            this.toOGGToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.toOGGToolStripMenuItem.Text = "to OGG";
+            this.toOGGToolStripMenuItem.Click += new System.EventHandler(this.toOgg_Click);
+            // 
+            // audioToolStrip
+            // 
+            this.audioToolStrip.Name = "audioToolStrip";
+            this.audioToolStrip.Size = new System.Drawing.Size(184, 22);
+            this.audioToolStrip.Text = "Change Decibels";
+            this.audioToolStrip.Click += new System.EventHandler(this.audioToolStrip_Click);
+            // 
+            // backgroundToolStrip
+            // 
+            this.backgroundToolStrip.Name = "backgroundToolStrip";
+            this.backgroundToolStrip.Size = new System.Drawing.Size(184, 22);
+            this.backgroundToolStrip.Text = "Remove Background";
+            this.backgroundToolStrip.Click += new System.EventHandler(this.backgroundToolStrip_Click);
+            // 
+            // guna2ControlBox1
+            // 
+            this.guna2ControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2ControlBox1.FillColor = System.Drawing.Color.Red;
+            this.guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.guna2ControlBox1.IconColor = System.Drawing.Color.White;
+            this.guna2ControlBox1.Location = new System.Drawing.Point(911, 0);
+            this.guna2ControlBox1.Name = "guna2ControlBox1";
+            this.guna2ControlBox1.Size = new System.Drawing.Size(39, 29);
+            this.guna2ControlBox1.TabIndex = 23;
+            // 
+            // guna2ControlBox2
+            // 
+            this.guna2ControlBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2ControlBox2.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox;
+            this.guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
+            this.guna2ControlBox2.IconColor = System.Drawing.Color.White;
+            this.guna2ControlBox2.Location = new System.Drawing.Point(872, 0);
+            this.guna2ControlBox2.Name = "guna2ControlBox2";
+            this.guna2ControlBox2.Size = new System.Drawing.Size(39, 29);
+            this.guna2ControlBox2.TabIndex = 24;
+            // 
+            // guna2ControlBox3
+            // 
+            this.guna2ControlBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
+            this.guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(152)))), ((int)(((byte)(166)))));
+            this.guna2ControlBox3.IconColor = System.Drawing.Color.White;
+            this.guna2ControlBox3.Location = new System.Drawing.Point(833, 0);
+            this.guna2ControlBox3.Name = "guna2ControlBox3";
+            this.guna2ControlBox3.Size = new System.Drawing.Size(39, 29);
+            this.guna2ControlBox3.TabIndex = 25;
             // 
             // Form1
             // 
@@ -585,6 +594,7 @@
         private System.Windows.Forms.Label lblBluetooth;
         private System.Windows.Forms.Label lblChangeMicrophone;
         private System.Windows.Forms.Button btnMicrophone;
+        private System.Windows.Forms.ToolStripMenuItem backgroundToolStrip;
     }
 }
 

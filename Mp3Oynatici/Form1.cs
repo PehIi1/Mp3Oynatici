@@ -52,6 +52,7 @@ namespace Mp3Player
         private bool isStopped = false;
         private bool isPaused = false;
         private bool isPlayer = true;
+        private bool isRemove = false;
 
         private IWavePlayer waveOut;
         public WaveStream audioFile;
@@ -139,11 +140,12 @@ namespace Mp3Player
                 {
                     instaConvert(filePath);
                 }
-                audioFile = new AudioFileReader(filePath); // seçilen dosyayı oynatma
+                audioFile = new AudioFileReader(filePath); // seçilen dosyayı import etme
 
                 waveOut = new WaveOutEvent(); 
                 waveOut.Init(audioFile);
                 btnPlay.Image = imagePlay;
+                isRemove = false;
 
 
                 lblToplamSure.Text = audioFile.TotalTime.ToString(@"hh\:mm\:ss"); // toplam süre label'ına dosyanın toplam süresini yazdırma
@@ -340,13 +342,12 @@ namespace Mp3Player
                     double newVolume = decibelForm.newDecibel;
 
                     string input = ofd.FileName;
-                    string directory = Path.GetDirectoryName(input);
                     string fileName = Path.GetFileNameWithoutExtension(input);
                     string extension = Path.GetExtension(input);
 
                     sfd.Filter = ofd.Filter;
-                    sfd.DefaultExt = ofd.Filter;
-                    sfd.FileName = Path.Combine(directory, $"Changed_{fileName}{extension}");
+                    sfd.DefaultExt = ofd.DefaultExt;
+                    sfd.FileName = $"Changed_{fileName}{extension}";
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
                         string output = sfd.FileName;
@@ -355,6 +356,22 @@ namespace Mp3Player
                 }
                 else
                     MessageBox.Show("The operation failed!", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("Lütfen bir ses dosyası seçiniz!", "Dosya bulunamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private async void backgroundToolStrip_Click(object sender, EventArgs e)
+        {
+            if (audioFile != null)
+            {
+                sfd.Filter = ofd.Filter;
+                sfd.DefaultExt = ofd.DefaultExt;
+                sfd.FileName = "RemovedBGround_" + Path.GetFileName(ofd.FileName);
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    string output = sfd.FileName;
+                    await RemoveBack(ofd.FileName, output);
+                }
             }
             else
                 MessageBox.Show("Lütfen bir ses dosyası seçiniz!", "Dosya bulunamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -386,19 +403,40 @@ namespace Mp3Player
             }
             else if (!isPlayer && btnMicrophone.Image == imageMp3Player)
             {
+                StopRecording();
                 btnMicrophone.Image = imageMicrophone;
                 lblChangeMicrophone.Text = "Microphone";
                 goesPlayer();
             }
         }
-        private void btnBackground_Click(object sender, EventArgs e)
+        private async void btnBackground_Click(object sender, EventArgs e)
         {
+            if (audioFile != null && !isRemove)
+            {
+                string newOutput = "tempFile.wav";
 
+                await RemoveBack(ofd.FileName, newOutput);
+
+                waveOut.Stop();
+                waveOut.Dispose();
+                audioFile.Dispose();
+
+                audioFile = new AudioFileReader(newOutput);
+                waveOut = new WaveOutEvent();
+                waveOut.Init(audioFile);
+                isRemove = true;
+                MessageBox.Show("Background noise is removed!", "Succesfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (isRemove)
+                MessageBox.Show("Background already removed!", "Second Remove", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+                MessageBox.Show("Lütfen bir ses dosyası seçiniz!", "Dosya bulunamadı", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void btnMicPlay_Click(object sender, EventArgs e)
         {
             if (btnMicPlay.Image == imagePlay)
             {
+                MessageBox.Show("Recording started", "Microphone", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnMicPlay.Image = imagePause;
                 StartRecording();
             }
@@ -410,20 +448,25 @@ namespace Mp3Player
         }
         private void btnMicStop_Click(object sender, EventArgs e)
         {
-            StopRecording();
-
-            sfd.Filter = "WAV files (*.wav)|*.wav";
-            string tempFile = "MicDosyasi.wav";
-            sfd.InitialDirectory = lastPath;
-            string uniqueFilename = GenerateUniqueFileName(Path.Combine(sfd.InitialDirectory, tempFile));
-            sfd.FileName = Path.GetFileName(uniqueFilename);
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (memoryStream != null)
             {
-                lastPath = Path.GetDirectoryName(sfd.FileName);
-                string outputPath = sfd.FileName;
-                SaveRecording(outputPath);
+                StopRecording();
+
+                sfd.Filter = "WAV files (*.wav)|*.wav";
+                string tempFile = "MicDosyasi.wav";
+                sfd.InitialDirectory = lastPath;
+                string uniqueFilename = GenerateUniqueFileName(Path.Combine(sfd.InitialDirectory, tempFile));
+                sfd.FileName = Path.GetFileName(uniqueFilename);
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    lastPath = Path.GetDirectoryName(sfd.FileName);
+                    string outputPath = sfd.FileName;
+                    SaveRecording(outputPath);
+                }
             }
+            else
+                MessageBox.Show("Please start recording!", "No Recording", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /****************************************** TrackBarlar ******************************************/
@@ -706,6 +749,8 @@ namespace Mp3Player
             writer = null;
             waveIn?.Dispose();
             waveIn = null;
+            if (btnMicPlay.Image == imagePause)
+                btnMicPlay.Image = imagePlay;
         }
 
         public void SaveRecording(string outputPath)
@@ -732,6 +777,18 @@ namespace Mp3Player
             }
 
             return newFilePath;
+        }
+
+        public async Task RemoveBack(string inputfilepath, string outputfilepath)
+        {
+            if (audioFile != null)
+            {
+                await FFMpegArguments
+                .FromFileInput(inputfilepath)
+                .OutputToFile(outputfilepath, overwrite: true, options => options
+                    .WithCustomArgument("-af afftdn"))
+                .ProcessAsynchronously();
+            }
         }
     }
 }
