@@ -30,7 +30,7 @@
         {
             this.lblGecenSure = new System.Windows.Forms.Label();
             this.lblToplamSure = new System.Windows.Forms.Label();
-            this.graphic = new Guna.UI2.WinForms.Guna2Panel();
+            this.pnlGraphic = new Guna.UI2.WinForms.Guna2Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblChangeMicrophone = new System.Windows.Forms.Label();
             this.btnMicrophone = new System.Windows.Forms.Button();
@@ -88,22 +88,22 @@
             this.lblToplamSure.TabIndex = 9;
             this.lblToplamSure.Text = "00:00:00";
             // 
-            // graphic
+            // pnlGraphic
             // 
-            this.graphic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlGraphic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.graphic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.graphic.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.graphic.Location = new System.Drawing.Point(0, 422);
-            this.graphic.Name = "graphic";
-            this.graphic.Size = new System.Drawing.Size(950, 99);
-            this.graphic.TabIndex = 17;
-            this.graphic.Paint += new System.Windows.Forms.PaintEventHandler(this.guna2Panel1_Paint);
-            this.graphic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphic_MouseClick);
-            this.graphic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.guna2Panel1_MouseDown);
-            this.graphic.MouseEnter += new System.EventHandler(this.guna2Panel1_MouseEnter);
-            this.graphic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.guna2Panel1_MouseMove);
-            this.graphic.MouseUp += new System.Windows.Forms.MouseEventHandler(this.guna2Panel1_MouseUp);
+            this.pnlGraphic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pnlGraphic.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnlGraphic.Location = new System.Drawing.Point(0, 422);
+            this.pnlGraphic.Name = "pnlGraphic";
+            this.pnlGraphic.Size = new System.Drawing.Size(950, 99);
+            this.pnlGraphic.TabIndex = 17;
+            this.pnlGraphic.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGraphic_Paint);
+            this.pnlGraphic.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlGraphic_MouseClick);
+            this.pnlGraphic.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlGraphic_MouseDown);
+            this.pnlGraphic.MouseEnter += new System.EventHandler(this.pnlGraphic_MouseEnter);
+            this.pnlGraphic.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGraphic_MouseMove);
+            this.pnlGraphic.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlGraphic_MouseUp);
             // 
             // panel1
             // 
@@ -542,7 +542,7 @@
             this.Controls.Add(this.guna2ControlBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.graphic);
+            this.Controls.Add(this.pnlGraphic);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(950, 440);
             this.Name = "Form1";
@@ -564,7 +564,7 @@
         private System.Windows.Forms.Label lblToplamSure;
         internal System.Windows.Forms.Button btnForward;
         internal System.Windows.Forms.Button btnBackward;
-        private Guna.UI2.WinForms.Guna2Panel graphic;
+        private Guna.UI2.WinForms.Guna2Panel pnlGraphic;
         internal System.Windows.Forms.Button btnRestart;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;

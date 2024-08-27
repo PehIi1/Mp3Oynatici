@@ -2,6 +2,8 @@
 using FFMpegCore.Arguments;
 using FFMpegCore.Helpers;
 using Guna.UI2.WinForms;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Mp3Oynatici;
 using NAudio.Utils;
 using NAudio.Wave;
@@ -47,6 +49,7 @@ namespace Mp3Player
 
         private string lastPath;
         private float[] audioData;
+        private float lastMaxAmplitude = 0;
         private int voice;
         private bool isMouseDown;
         private bool isStopped = false;
@@ -102,7 +105,7 @@ namespace Mp3Player
                 lblGecenSure.Text = audioFile.CurrentTime.ToString(@"hh\:mm\:ss");  // anlık süre label'ının değeri ses dosyasının anlık süresi olarak atanıyor
             }
             btnVolume.Invalidate(); // ses buton'u güncelleniyor (ses düzeyine göre ikon değişikliği için)
-            graphic.Invalidate(); // grafik panel'i güncelleniyor
+            pnlGraphic.Invalidate(); // grafik panel'i güncelleniyor
             Volume.Invalidate(); // ses trackbar'ı güncelleniyor
         }
         private void InitializeButtonImages() // değişkenlere ikonların atanması
@@ -122,13 +125,13 @@ namespace Mp3Player
             ofd.Filter = "Audio files (*.wav;*.mp3;*.aac)|*.wav;*.mp3;*.aac"; // import edilen dosyası seçme ekranında görünecek dosya formatları
             if (ofd.ShowDialog() == DialogResult.OK) // dosya seçildiğinde
             {
-                if (waveOut != null) // Zaten import edilen dosya varsa durdur
+                if (waveOut != null) // Zaten import edilen dosya varsa durdur ve bellekten sil
                 {
                     waveOut.Stop();
                     waveOut.Dispose();
                     waveOut = null;
                 }
-                if (audioFile != null) // Zaten import edilen dosya varsa durdur
+                if (audioFile != null) // Zaten import edilen dosya varsa durdur ve bellekten sil
                 {
                     audioFile.Dispose();
                     audioFile = null;
@@ -153,7 +156,7 @@ namespace Mp3Player
                 waveOut.PlaybackStopped += OnPlayBackStopped; // OnPlayBackStopped metodunu dosyanın bitmesiyle ilişkilendirme
                 await Task.Run(() => loadAudioData()); // ses dosyasını işleyecek olan metodu arkaplanla çalıştırma
 
-                graphic.Invalidate(); // dosya eklendiğinde grafik panel'ini tek seferli güncelleme
+                pnlGraphic.Invalidate(); // dosya eklendiğinde grafik panel'ini tek seferli güncelleme
 
                 {   // dosya ismi label'ına dosyanın ismini yazdırma
                     string fileName = Path.GetFileNameWithoutExtension(filePath);
@@ -434,9 +437,10 @@ namespace Mp3Player
         }
         private void btnMicPlay_Click(object sender, EventArgs e)
         {
-            if (btnMicPlay.Image == imagePlay)
+            if (!isMicOk())
+                MessageBox.Show("Microphone is not found!", "Can't start recording", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (btnMicPlay.Image == imagePlay)
             {
-                MessageBox.Show("Recording started", "Microphone", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnMicPlay.Image = imagePause;
                 StartRecording();
             }
@@ -464,6 +468,9 @@ namespace Mp3Player
                     string outputPath = sfd.FileName;
                     SaveRecording(outputPath);
                 }
+
+
+                //pnlGraphic.BackColor = Color.FromArgb(192, 255, 255);
             }
             else
                 MessageBox.Show("Please start recording!", "No Recording", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -479,44 +486,70 @@ namespace Mp3Player
         }
 
         /****************************************** Paneller ******************************************/
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e) // grafik panelinin görselinin değişme olayı
+        private void pnlGraphic_Paint(object sender, PaintEventArgs e) // grafik panelinin görselinin değişme olayı
         {
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Black); // Grafiği çizecek kalemi oluşturma
 
-            int width = graphic.Width;
-            int height = graphic.Height;
+            int width = pnlGraphic.Width;
+            int height = pnlGraphic.Height;
             int midHeight = height / 2;
             string fileName = ofd.FileName;
-            if (audioData != null && audioData.Length > 0)
+
+            if (btnMicrophone.Image == imageMicrophone)
             {
-                int step = Math.Max(1, audioData.Length / width); 
-                for (int i = 0; i < width; i++) // import edilen ses dosyasının ses şiddetinin grafiğini çıkartma işlemi
+                if (audioData != null && audioData.Length > 0)
                 {
-                    int index = i * step;
-                    if (index < audioData.Length)
+                    int step = Math.Max(1, audioData.Length / width);
+                    for (int i = 0; i < width; i++) // import edilen ses dosyasının ses şiddetinin grafiğini çıkartma işlemi
                     {
-                        float value = audioData[index];
-                        float y = midHeight + (float)(value * midHeight);
-                        g.DrawLine(pen, i, midHeight, i, y); // ses dosyasının her bir verisine göre ses şiddeti grafiğini çıkartma işlemi
+                        int index = i * step;
+                        if (index < audioData.Length)
+                        {
+                            float value = audioData[index];
+                            float y = midHeight + (float)(value * midHeight);
+                            g.DrawLine(pen, i, midHeight, i, y); // ses dosyasının her bir verisine göre ses şiddeti grafiğini çıkartma işlemi
+                        }
                     }
-                }
-                if (audioFile != null)
-                {
-                    pen = new Pen(Color.Red, 3);
-                    int playPositionX = (int)((audioFile.CurrentTime.TotalMilliseconds / audioFile.TotalTime.TotalMilliseconds) * graphic.Width);
-                    if (playPositionX > graphic.Width)
-                        playPositionX = graphic.Width;
-                    if (isMouseDown)
-                        g.DrawLine(pen, playPositionX, 0, playPositionX, graphic.Height); // fare ile grafiğin üzerinden ses dosyasının yönetiminin takibi için görsel oluşturma işlemi
-                    else if (isStopped)
+                    if (audioFile != null)
                     {
-                        g.DrawLine(pen, graphic.Width - 1, 0, graphic.Width - 1, graphic.Height); // ses dosyası oynatması bittiğinde sona gelindiğini gösteren görseli oluşturma işlemi
+                        pen = new Pen(Color.Red, 3);
+                        int playPositionX = (int)((audioFile.CurrentTime.TotalMilliseconds / audioFile.TotalTime.TotalMilliseconds) * pnlGraphic.Width);
+                        if (playPositionX > pnlGraphic.Width)
+                            playPositionX = pnlGraphic.Width;
+                        if (isMouseDown)
+                            g.DrawLine(pen, playPositionX, 0, playPositionX, pnlGraphic.Height); // fare ile grafiğin üzerinden ses dosyasının yönetiminin takibi için görsel oluşturma işlemi
+                        else if (isStopped)
+                        {
+                            g.DrawLine(pen, pnlGraphic.Width - 1, 0, pnlGraphic.Width - 1, pnlGraphic.Height); // ses dosyası oynatması bittiğinde sona gelindiğini gösteren görseli oluşturma işlemi
+                        }
+                        else
+                            g.DrawLine(pen, playPositionX, 0, playPositionX, pnlGraphic.Height); // grafik üzerinde ses dosyasının anlık takibinin yapılabileceği görseli oluşturma işlemi
                     }
-                    else
-                        g.DrawLine(pen, playPositionX, 0, playPositionX, graphic.Height); // grafik üzerinde ses dosyasının anlık takibinin yapılabileceği görseli oluşturma işlemi
                 }
             }
+            else if (btnMicrophone.Image == imageMp3Player)
+            {
+                // Ses şiddetini hesaplayın (0 ile 1 arasında bir değer)
+                float amplitude = CalculateCurrentAmplitude();
+
+                // Grafiğin orta noktasını belirleyin
+                int centerX = pnlGraphic.Width / 2;
+                int centerY = pnlGraphic.Height / 2;
+
+                // Ses şiddetine göre çizginin yüksekliğini hesaplayın
+                int barHeight = (int)(amplitude * pnlGraphic.Height * 5);
+
+                // Çizimin hassasiyetini artırmak için her bir adımı belirleyin
+                int step = pnlGraphic.Width / 300;
+
+                for (int x = 0; x < pnlGraphic.Width; x += step)
+                {
+                // Y ekseninde merkezi simetrik olarak yukarı ve aşağı çizgiler çizin
+                e.Graphics.DrawLine(pen, x, centerY - barHeight / 2, x, centerY + barHeight / 2);
+                }
+            }
+
         }
         private void btnVolume_Paint(object sender, PaintEventArgs e) // ses butonunun görselinin değişme olayı
         { // ses butonunun ses düzeyine göre ikonunun değişme işlemi
@@ -538,43 +571,46 @@ namespace Mp3Player
                 btnVolume.Image = imageFull;
             }
         }
-        private void graphic_MouseClick(object sender, MouseEventArgs e) // panele fare ile tıklama olayı
+        private void pnlGraphic_MouseClick(object sender, MouseEventArgs e) // panele fare ile tıklama olayı
         { // ses dosyasının oynatma konumunun panel üzerinde tıklanan yere getirilme işlemi
-            if (audioFile != null)
+            if (audioFile != null && btnMicrophone.Image == imageMicrophone)
             {
-                float percentage = (float)e.X / graphic.Width;
+                float percentage = (float)e.X / pnlGraphic.Width;
                 double newTime = percentage * audioFile.TotalTime.TotalMilliseconds;
                 audioFile.CurrentTime = TimeSpan.FromMilliseconds(newTime);
             }
         }
-        private void guna2Panel1_MouseEnter(object sender, EventArgs e) // fare ile panel üzerine gelme olayı
+
+        private void pnlGraphic_MouseEnter(object sender, EventArgs e) // fare ile panel üzerine gelme olayı
         {
-            if (audioFile != null)
+            if (audioFile != null && btnMicrophone.Image == imageMicrophone)
             {
-                graphic.Cursor = Cursors.Hand; // fare ile panelin üzerine gelindiğinde farenin görselinin "el" şekline dönüşmesi işlemi
+                pnlGraphic.Cursor = Cursors.Hand; // fare ile panelin üzerine gelindiğinde farenin görselinin "el" şekline dönüşmesi işlemi
             }
+            else
+                pnlGraphic.Cursor = Cursors.Default;
         }
-        private void guna2Panel1_MouseMove(object sender, MouseEventArgs e) // fare ile panelin üzerinde tıklanıp kaydırma olayı
+        private void pnlGraphic_MouseMove(object sender, MouseEventArgs e) // fare ile panelin üzerinde tıklanıp kaydırma olayı
         {
-            if (isMouseDown && audioFile != null)
+            if (isMouseDown && audioFile != null && btnMicrophone.Image == imageMicrophone)
             {
-                float percentage = ((float)e.X * (float)audioFile.TotalTime.TotalMilliseconds) / graphic.Width;
+                float percentage = ((float)e.X * (float)audioFile.TotalTime.TotalMilliseconds) / pnlGraphic.Width;
                 if (percentage < 0)
                     percentage = 0;
                 audioFile.CurrentTime = TimeSpan.FromMilliseconds(percentage); // fare ile panel üzerinde kaydırma anında anlık olarak dosyanın oynatma takibinin yapılma işlemi
             }
         }
-        private void guna2Panel1_MouseDown(object sender, MouseEventArgs e) // fare ile panele basılı tutma olayı
-        { 
-            if (audioFile != null)
+        private void pnlGraphic_MouseDown(object sender, MouseEventArgs e) // fare ile panele basılı tutma olayı
+        {
+            if (audioFile != null && btnMicrophone.Image == imageMicrophone)
             {
                 isMouseDown = true;
                 waveOut?.Stop(); // fare ile panelin üzerine basılı tutulduğu anda çalınan ses dosyasının durdurulma işlemi
             }
         }
-        private void guna2Panel1_MouseUp(object sender, MouseEventArgs e) // panel üzerinde basılı tutulan farenin basılı tutmanın bırakılma olayı
+        private void pnlGraphic_MouseUp(object sender, MouseEventArgs e) // panel üzerinde basılı tutulan farenin basılı tutmanın bırakılma olayı
         {
-            if (audioFile != null)
+            if (audioFile != null && btnMicrophone.Image == imageMicrophone)
             {
                 isMouseDown = false;
                 waveOut?.Play(); // farenin basılı tutulurken durdurulan ses kaydının basılı tutma bittiğinde kaldığı yerden oynatılmaya devam etme işlemi
@@ -696,8 +732,9 @@ namespace Mp3Player
         }
         public void StartRecording()
         {
-            if (waveIn == null)
+            if (waveIn == null && isMicOk())
             {
+                MessageBox.Show("Recording has started", "Recording", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 waveIn = new WaveInEvent();
                 waveIn.WaveFormat = new WaveFormat(44100, 1);
                 waveIn.DataAvailable += OnDataAvailable;
@@ -715,13 +752,34 @@ namespace Mp3Player
                 isPaused = false;
             }
             else if (waveIn != null)
+            {
+                MessageBox.Show("Recording continues", "Recording", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResumeRecording();
+            }
         }
         private void OnDataAvailable(object sender, WaveInEventArgs e)
         {
             if (!isPaused && writer != null)
             {
-                writer.Write(e.Buffer, 0, e.BytesRecorded);
+                // Anlık olarak alınan ses verilerinin şiddetini hesaplayın
+                float max = 0;
+                for (int index = 0; index < e.BytesRecorded; index += 2)
+                {
+                    short sample = BitConverter.ToInt16(e.Buffer, index);
+                    float sample32 = sample / 32768f;
+                    if (sample32 < 0) sample32 = -sample32;
+                    if (sample32 > max) max = sample32;
+                }
+
+                // Hesaplanan maksimum amplitüdü global değişkene kaydedin
+                lastMaxAmplitude = max;
+
+                // Sonucu bir grafik üzerinde gösterin
+                this.BeginInvoke(new Action(() =>
+                {
+                    // Panel üzerinde grafiği çizmek için yeniden çizim çağırın
+                    pnlGraphic.Invalidate();
+                }));
             }
         }
         private void OnRecordingStopped(object sender, StoppedEventArgs e)
@@ -778,7 +836,6 @@ namespace Mp3Player
 
             return newFilePath;
         }
-
         public async Task RemoveBack(string inputfilepath, string outputfilepath)
         {
             if (audioFile != null)
@@ -789,6 +846,16 @@ namespace Mp3Player
                     .WithCustomArgument("-af afftdn"))
                 .ProcessAsynchronously();
             }
+        }
+        public bool isMicOk()
+        {
+            var waveInDevices = WaveInEvent.DeviceCount;
+            return waveInDevices > 0;
+        }
+        private float CalculateCurrentAmplitude()
+        {
+            // Global değişkende saklanan son hesaplanan maksimum amplitüdü döndürün
+            return lastMaxAmplitude;
         }
     }
 }
